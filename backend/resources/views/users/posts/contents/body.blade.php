@@ -28,13 +28,17 @@
       @endif
     </div>
 
-    <div class="col-auto px-0">
-      <button class="border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#likes-post-{{ $post->id }}">
+    <div class="col-auto p-1">
+      @if($post->likes->count() != 0)
+      <button  type="button" class="border-0" data-bs-toggle="modal" data-bs-target="#likes-post-{{ $post->id }}">
         {{ $post->likes->count() }}
       </button>
+      @include('users.posts.contents.modals.like')
+      @else
+      0
+      @endif
     </div>
 
-    @include('users.posts.contents.modals.like')
 
     <div class="col text-end">
       {{-- categories --}}
