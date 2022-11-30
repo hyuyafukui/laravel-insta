@@ -89,6 +89,7 @@ class HomeController extends Controller
                         ->except(Auth::user()->id);
           }
 
+        //only include users NOT followed yet
         $suggested_users = [];
         foreach ($users_list as $user) {
             if (!$user->isFollowed()) {
@@ -100,7 +101,6 @@ class HomeController extends Controller
 
 
         return view('users.suggested-users')
-            ->with('suggested_users', $this->getSuggestedUsers())
-            ->with('search', $request->search);
+            ->with('suggested_users', $suggested_users);
     }
 }
